@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import * as courseActions from '../../actions/courseActions';
 
 class CoursesPage extends React.Component {
 
@@ -21,13 +22,18 @@ class CoursesPage extends React.Component {
   }
 
   onClickSave() {
-    alert(`Saving ${this.state.course.title}`);
+    this.props.dispatch(courseActions.createCourse(this.state.course));
+  }
+
+  courseRow(course, index) {
+    return <div key={index}>{course.title}</div>;
   }
 
   render () {
     return (
       <div>
         <h1>Courses</h1>
+        {this.props.courses.map(this.courseRow)}
         <h2>Add Course</h2>
         <input
           type="text"
@@ -43,4 +49,16 @@ class CoursesPage extends React.Component {
   }
 }
 
-export default connect(MapStateToProps, MapDispatchToProps) (CoursesPage);
+CoursesPage.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  courses: React.PropTypes.array.isRequired
+};
+
+
+function MapStateToProps(state, ownProps) {
+  return ({
+    courses: state.courses
+  });
+}
+
+export default connect(MapStateToProps) (CoursesPage);
