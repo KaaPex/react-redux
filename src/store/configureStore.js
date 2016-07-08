@@ -6,10 +6,10 @@ export default function configureStore(initialState) {
   return createStore(
     rootReducer,
     initialState,
-    window.devToolsExtension && window.devToolsExtension()
-    // compose(
-    //   applyMiddleware(reduxImmutableStateInvariant()),
-    //   window.devToolsExtension ? window.devToolsExtension() : f => f
-    // )
+    // window.devToolsExtension && window.devToolsExtension()
+    compose(
+      applyMiddleware(reduxImmutableStateInvariant()),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
   );
 }
