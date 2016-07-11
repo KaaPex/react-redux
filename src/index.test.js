@@ -7,8 +7,8 @@ describe('Our first test', () => {
   });
 });
 
-describe('reducers', () => {
-  it('should handle actions', () => {
-    expect(reducers({"courses":[]}, {"type":"CREATE_COURSE","course":{"title":"123"}})).toEqual({"courses":[{title: "123"}]});
-  });
-});
+// describe('reducers', () => {
+//   it('should handle actions', () => {
+//     expect(reducers({"courses":[]}, {"type":"CREATE_COURSE","course":{"title":"123"}})).toEqual({"courses":[{title: "123"}]});
+//   });
+// });
