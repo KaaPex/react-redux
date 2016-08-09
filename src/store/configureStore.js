@@ -1,16 +1,9 @@
-import {createStore, applyMiddleware, compose} from 'redux';
-import rootReducer from '../reducers';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import thunk from 'redux-thunk';
-
-export default function configureStore(initialState) {
-  return createStore(
-    rootReducer,
-    initialState,
-    // window.devToolsExtension && window.devToolsExtension()
-    compose(
-      applyMiddleware(thunk, reduxImmutableStateInvariant()),
-      window.devToolsExtension ? window.devToolsExtension() : f => f
-    )
-  );
+/**
+ * Created on 09.08.16.
+ * configureStore.js of react-redux project
+ */
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./configureStore.prod');
+} else {
+  module.exports = require('./configureStore.dev');
 }
